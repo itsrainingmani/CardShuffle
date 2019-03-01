@@ -1,5 +1,6 @@
 #from __future__ import division
 import csv
+import time
 
 def homogenous(decks,n):
     firstel = decks[0][0]
@@ -11,7 +12,7 @@ def homogenous(decks,n):
 
 def cards(k):
     deck = [[1,0] for i in range(0,k)]
-    #print deck
+    print deck
 
     num_step = 0
 
@@ -24,7 +25,7 @@ def cards(k):
     half2.reverse()
     deck[::2] = half2
     deck[1::2] = half1
-    #print deck
+    # print deck
     num_step += 1
 
     while (homogenous(deck,k) == False):
@@ -41,18 +42,24 @@ def cards(k):
         deck[1::2] = half1
         num_step += 1
         #print deck
-
+    print deck
     return num_step
 
 num = []
 
-for i in range(3, 10001, 1):
-    num.append([i, cards(i)])
+# print cards(3)
 
-with open("Card-10000.csv","a+") as csvdata:
-    cardwriter = csv.writer(csvdata, delimiter=',')
-    for n in num:
-        cardwriter.writerow(n)
+init_time = time.clock()
+for i in range(3, 5, 1):
+    # num.append([i, cards(i)])
+    print cards(i)
+end_time = time.clock()
+print end_time-init_time
+
+# with open("Card-10000.csv","a+") as csvdata:
+#     cardwriter = csv.writer(csvdata, delimiter=',')
+#     for n in num:
+#         cardwriter.writerow(n)
 '''
 
 with open("Card-Same-Odd.csv","a+") as csvdata:
